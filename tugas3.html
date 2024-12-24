@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Hotel</title>
+    <style>
+      .checkmark {
+        font-size: 20px;
+      }
+      table thead {
+        background-color: rgb(106, 125, 222);
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Data kamar -->
+    <div class="data-kamar">
+      <h2>Data Kamar</h2>
+      <table border="1" style="text-align: center;">
+        <thead>
+          <tr>
+            <th>Id Kamar</th>
+            <th>Room</th>
+            <th>Tipe kamar</th>
+            <th>Price</th>
+            <th>Fasilitas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>111</td>
+            <td><img src="gambar/standard_room.jpg.crdownload" alt="standard-room" width="200px"></td>
+            <td>Standard Room</td>
+            <td>Rp.500.000</td>
+            <td>Kamar memiliki fasilitas standar seperti tempat tidur, meja, kamar mandi pribadi, 
+                TV, dan Wi-Fi. Tipe ini sering kali lebih ekonomis dan cocok 
+                untuk tamu yang mencari kenyamanan dasar.</td>
+          </tr>
+          <tr>
+            <td>222</td>
+            <td><img src="gambar/deluxe_room.jpeg" alt="deluxe-room" width="200px"></td>
+            <td>Deluxe Room</td>
+            <td>Rp.800.000</td>
+            <td>Kamar yang lebih luas dan memiliki fasilitas tambahan dibandingkan kamar standard, 
+                seperti pemandangan yang lebih baik, dekorasi yang lebih mewah, atau fasilitas 
+                tambahan seperti minibar dan area duduk.</td>
+          </tr>
+          <tr>
+            <td>333</td>
+            <td><img src="gambar/suite_room.jpeg" alt="suite-room" width="200px"></td>
+            <td>Suite Room</td>
+            <td>Rp.2.500.000</td>
+            <td>Kamar paling mewah dengan ruang yang jauh lebih besar dan biasanya terbagi dalam 
+                beberapa area seperti ruang tamu, kamar tidur, dan dapur kecil. 
+                Dilengkapi fasilitas kelas atas seperti jacuzzi, balkon pribadi, 
+                atau layanan khusus, dan ditujukan untuk tamu yang mencari pengalaman premium.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fasilitas -->
+    <div class="Fasilitas">
+      <h2>Fasilitas</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nama</th>
+            <th>Fasilitas</th>
+            <th>Harga Weekend</th>
+            <th>Harga Weekday</th>
+            <th>Kuota</th>
+            <th>Jam Buka</th>
+            <th>Jam Tutup</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>121</td>
+            <td>GYM</td>
+            <td>Alat-alat Workout, Sauna, Kamar mandi, Kamar ganti, dan Loker maksimal 3 jam</td>
+            <td>Rp.75.000</td>
+            <td>Rp.50.000</td>
+            <td>1 Orang</td>
+            <td>02.00</td>
+            <td>20.30</td>
+          </tr>
+          <tr>
+            <td>232</td>
+            <td>Klub Anak</td>
+            <td>Playground</td>
+            <td>Rp.50.000</td>
+            <td>Rp.40.000</td>
+            <td>1 Orang</td>
+            <td>08.00</td>
+            <td>16.00</td>
+          </tr>
+          <tr>
+            <td>343</td>
+            <td>SPA</td>
+            <td>Berendam dan pijat</td>
+            <td>Rp.150.000</td>
+            <td>Rp.100.000</td>
+            <td>1 Orang</td>
+            <td>09.00</td>
+            <td>20.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Data pemesanan -->
+    <div class="data-pemesanan">
+      <h2>Data Pemesanan</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th rowspan="2">Id</th>
+            <th rowspan="2">Tanggal Pesan</th>
+            <th rowspan="2">Nama Tamu</th>
+            <th rowspan="2">Type Kamar</th>
+            <th rowspan="2">Check In</th>
+            <th rowspan="2">Check Out</th>
+            <th colspan="2">Fasilitas Tambahan</th>
+          </tr>
+          <tr>
+            <th style="background-color: green;">Ya</th>
+            <th style="background-color: red;">Tidak</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HOTEL111</td>
+            <td>23 Maret 2024</td>
+            <td>Andreas Khile</td>
+            <td>Standard Room</td>
+            <td>27 Maret 2024</td>
+            <td>28 Maret 2024</td>
+            <td></td>
+            <td><span class="checkmark" style="color: red;">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td>HOTEL222</td>
+            <td>17 April 2024</td>
+            <td>Vivi Starla</td>
+            <td>Deluxe Room</td>
+            <td>20 April 2024</td>
+            <td>21 April 2024</td>
+            <td><span class="checkmark" style="color: green;">&#10003;</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>HOTEL333</td>
+            <td>09 Mei 2024</td>
+            <td>Damian Payne</td>
+            <td>Suite Room</td>
+            <td>12 Mei 2024</td>
+            <td>15 Mei 2024</td>
+            <td><span class="checkmark" style="color: green;">&#10003;</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

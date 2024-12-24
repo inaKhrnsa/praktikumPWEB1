@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form input[type="date"],
+        form input[type="number"],
+        form select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn.save {
+            background-color: #007bff;
+        }
+
+        .btn.cancel {
+            background-color: #f44336;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function calculateTotal() {
+                const tipeKamar = $('#tipeKamar').val();
+                const durasiMenginap = parseInt($('#durasiMenginap').val(), 10) || 0;
+                const breakfast = $('#breakfast').is(':checked');
+                let harga = 0;
+
+                if (tipeKamar === 'standar') {
+                    harga = 300000;
+                } else if (tipeKamar === 'deluxe') {
+                    harga = 500000;
+                } else if (tipeKamar === 'family') {
+                    harga = 700000;
+                }
+
+                const biayaMenginap = harga * durasiMenginap;
+                const diskon = durasiMenginap > 3 ? 0.1 * biayaMenginap : 0;
+                const biayaBreakfast = breakfast ? 80000 * durasiMenginap : 0;
+                const totalBayar = biayaMenginap - diskon + biayaBreakfast;
+
+                $('#harga').val(harga.toLocaleString('id-ID'));
+                $('#totalBayar').val(totalBayar.toLocaleString('id-ID'));
+            }
+
+            function validateForm(event) {
+                event.preventDefault();
+
+                const namaPemesan = $('#namaPemesanan').val().trim();
+                const nomorIdentitas = $('#nomorIdentitas').val().trim();
+                const durasiMenginap = $('#durasiMenginap').val().trim();
+
+                if (!namaPemesan) {
+                    alert('Nama Pemesan harus diisi!');
+                    return;
+                }
+
+                if (!/^\d{16}$/.test(nomorIdentitas)) {
+                    alert('Nomor Identitas harus berupa 16 digit angka!');
+                    return;
+                }
+
+                if (!/^\d+$/.test(durasiMenginap) || parseInt(durasiMenginap, 10) <= 0) {
+                    alert('Durasi Menginap harus berupa angka lebih dari 0!');
+                    return;
+                }
+
+                calculateTotal();
+
+                const resume = `
+                    Nama Pemesan: ${namaPemesan}
+                    Nomor Identitas: ${nomorIdentitas}
+                    Tipe Kamar: ${$('#tipeKamar').val()}
+                    Durasi Menginap: ${durasiMenginap} hari
+                    Diskon: ${durasiMenginap > 3 ? '10%' : '0%'}
+                    Total Bayar: Rp ${$('#totalBayar').val()}
+                `;
+                alert(resume);
+            }
+
+            $('#tipeKamar, #durasiMenginap, #breakfast').on('change', calculateTotal);
+            $('form').on('submit', validateForm);
+        });
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Form Pemesanan</h2>
+        <form>
+            <label for="namaPemesanan">Nama Pemesan:</label>
+            <input type="text" id="namaPemesanan" name="namaPemesanan" required>
+
+            <label for="jenisKelamin">Jenis Kelamin:</label>
+            <select id="jenisKelamin" name="jenisKelamin" required>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+
+            <label for="nomorIdentitas">Nomor Identitas:</label>
+            <input type="text" id="nomorIdentitas" name="nomorIdentitas" required>
+
+            <label for="tipeKamar">Tipe Kamar:</label>
+            <select id="tipeKamar" name="tipeKamar" required>
+                <option value="">-- Pilih --</option>
+                <option value="standar">Standar</option>
+                <option value="deluxe">Deluxe</option>
+                <option value="family">Family</option>
+            </select>
+
+            <label for="harga">Harga:</label>
+            <input type="text" id="harga" name="harga" readonly>
+
+            <label for="tanggalPesan">Tanggal Pesan:</label>
+            <input type="date" id="tanggalPesan" name="tanggalPesan" required>
+
+            <label for="durasiMenginap">Durasi Menginap:</label>
+            <input type="number" id="durasiMenginap" name="durasiMenginap" required>
+
+            <label>
+                <input type="checkbox" id="breakfast" name="breakfast">
+                Termasuk Breakfast
+            </label>
+
+            <label for="totalBayar">Total Bayar:</label>
+            <input type="text" id="totalBayar" name="totalBayar" readonly>
+
+            <div class="button-container">
+                <button type="submit" class="btn save">Simpan</button>
+                <button type="reset" class="btn cancel">Batal</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
